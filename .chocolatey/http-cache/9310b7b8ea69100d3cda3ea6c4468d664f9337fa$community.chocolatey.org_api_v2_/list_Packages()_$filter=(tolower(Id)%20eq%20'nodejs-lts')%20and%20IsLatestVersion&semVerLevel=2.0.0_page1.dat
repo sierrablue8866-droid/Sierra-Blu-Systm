@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed xml:base="http://community.chocolatey.org/api/v2/" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">Packages</title>
+  <id>http://community.chocolatey.org/api/v2/Packages</id>
+  <updated>2026-03-07T07:20:55Z</updated>
+  <link rel="self" title="Packages" href="Packages" />
+  <entry>
+    <id>http://community.chocolatey.org/api/v2/Packages(Id='nodejs-lts',Version='24.14.0')</id>
+    <title type="text">nodejs-lts</title>
+    <summary type="text">Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine</summary>
+    <updated>2026-03-06T06:31:17Z</updated>
+    <author>
+      <name>OpenJS Foundation</name>
+    </author>
+    <link rel="edit-media" title="V2FeedPackage" href="Packages(Id='nodejs-lts',Version='24.14.0')/$value" />
+    <link rel="edit" title="V2FeedPackage" href="Packages(Id='nodejs-lts',Version='24.14.0')" />
+    <category term="CCR.Website.V2FeedPackage" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <content type="application/zip" src="https://community.chocolatey.org/api/v2/package/nodejs-lts/24.14.0" />
+    <m:properties xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">
+      <d:Version>24.14.0</d:Version>
+      <d:Title>Node.js LTS (Install)</d:Title>
+      <d:Description>Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
+
+#### This package is the **LTS** (Long Term Support) release of Node.js. See the [LTS schedule](https://github.com/nodejs/LTS#lts-schedule) for more information.
+
+#### If you want the **Current** release, install the [nodejs](https://chocolatey.org/packages/nodejs) package instead.
+
+## Maintainer's Note
+
+I produce and maintain Chocolatey packages in my spare time, for free. If you use my packages, and appreciate the time and effort I put into making and maintaining them, please consider [making a small donation](https://www.buymeacoffee.com/jtcmedia). Thank-you!</d:Description>
+      <d:Tags>nodejs-lts nodejs lts node.js node admin npm javascript</d:Tags>
+      <d:Copyright>© OpenJS Foundation</d:Copyright>
+      <d:Created m:type="Edm.DateTime">2026-02-25T04:01:21.1</d:Created>
+      <d:Dependencies></d:Dependencies>
+      <d:DownloadCount m:type="Edm.Int32">4500089</d:DownloadCount>
+      <d:VersionDownloadCount m:type="Edm.Int32">17081</d:VersionDownloadCount>
+      <d:GalleryDetailsUrl>https://community.chocolatey.org/packages/nodejs-lts/24.14.0</d:GalleryDetailsUrl>
+      <d:ReportAbuseUrl>https://community.chocolatey.org/package/ReportAbuse/nodejs-lts/24.14.0</d:ReportAbuseUrl>
+      <d:IconUrl>https://rawcdn.githack.com/jtcmedia/chocolatey-packages/76f0c59ddbe130f082a19bd6908398e5dc22ba83/icons/nodejs-lts.png</d:IconUrl>
+      <d:IsLatestVersion m:type="Edm.Boolean">true</d:IsLatestVersion>
+      <d:IsAbsoluteLatestVersion m:type="Edm.Boolean">true</d:IsAbsoluteLatestVersion>
+      <d:IsPrerelease m:type="Edm.Boolean">false</d:IsPrerelease>
+      <d:Language></d:Language>
+      <d:Published m:type="Edm.DateTime">2026-02-25T04:01:21.1</d:Published>
+      <d:LicenseUrl>https://github.com/nodejs/node/blob/master/LICENSE</d:LicenseUrl>
+      <d:RequireLicenseAcceptance m:type="Edm.Boolean">false</d:RequireLicenseAcceptance>
+      <d:PackageHash>QDG+NFwYEvMiMvg8en+cnRwGEdmpEsEbNcLSB7tvVbuVITP/fPnrtA+xkq/C3VWXMENO/CkpuZKlCjkQ3Ir4rA==</d:PackageHash>
+      <d:PackageHashAlgorithm>SHA512</d:PackageHashAlgorithm>
+      <d:PackageSize m:type="Edm.Int64">31118230</d:PackageSize>
+      <d:ProjectUrl>https://nodejs.org/</d:ProjectUrl>
+      <d:ReleaseNotes>https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V24.md#24.14.0</d:ReleaseNotes>
+      <d:ProjectSourceUrl>https://github.com/nodejs/node</d:ProjectSourceUrl>
+      <d:PackageSourceUrl>https://github.com/jtcmedia/chocolatey-packages/tree/master/nodejs-lts</d:PackageSourceUrl>
+      <d:DocsUrl>https://nodejs.org/docs/latest-v24.x/api/index.html</d:DocsUrl>
+      <d:MailingListUrl></d:MailingListUrl>
+      <d:BugTrackerUrl>https://github.com/nodejs/node/issues</d:BugTrackerUrl>
+      <d:IsApproved m:type="Edm.Boolean">true</d:IsApproved>
+      <d:PackageStatus>Approved</d:PackageStatus>
+      <d:PackageSubmittedStatus>Ready</d:PackageSubmittedStatus>
+      <d:PackageTestResultUrl>https://gist.github.com/choco-bot/8bf36fb2d19700432e15011f356ffd66</d:PackageTestResultUrl>
+      <d:PackageTestResultStatus>Passing</d:PackageTestResultStatus>
+      <d:PackageTestResultStatusDate m:type="Edm.DateTime">2026-02-25T19:12:27.59</d:PackageTestResultStatusDate>
+      <d:PackageValidationResultStatus>Passing</d:PackageValidationResultStatus>
+      <d:PackageValidationResultDate m:type="Edm.DateTime">2026-02-25T04:35:55.347</d:PackageValidationResultDate>
+      <d:PackageCleanupResultDate m:type="Edm.DateTime" m:null="true"></d:PackageCleanupResultDate>
+      <d:PackageReviewedDate m:type="Edm.DateTime">2026-02-26T12:28:19.82</d:PackageReviewedDate>
+      <d:PackageApprovedDate m:type="Edm.DateTime">2026-02-26T12:28:19.82</d:PackageApprovedDate>
+      <d:PackageReviewer></d:PackageReviewer>
+      <d:IsDownloadCacheAvailable m:type="Edm.Boolean">false</d:IsDownloadCacheAvailable>
+      <d:DownloadCacheStatus>Checked</d:DownloadCacheStatus>
+      <d:DownloadCacheDate m:type="Edm.DateTime">2026-02-26T13:33:29.073</d:DownloadCacheDate>
+      <d:DownloadCache></d:DownloadCache>
+      <d:PackageScanStatus>NotFlagged</d:PackageScanStatus>
+      <d:PackageScanResultDate m:type="Edm.DateTime">2026-02-26T12:28:19.82</d:PackageScanResultDate>
+      <d:PackageScanFlagResult>None</d:PackageScanFlagResult>
+    </m:properties>
+  </entry>
+  <link rel="next" href="http://community.chocolatey.org/api/v2/Packages?$filter=(tolower(Id)%20eq%20'nodejs-lts')%20and%20IsLatestVersion&amp;$skiptoken='7930.6494','nodejs-lts'" />
+</feed>
