@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Palette (Lightened per user request) */
+  --background: #08101C; /* Lighter Dark Navy */
+  --surface: #0D1B2E;    /* Lighter Surface */
+  --surface-alt: #13243D;
+  --foreground: #F8FAFC; 
+  
+  /* Primary AI Cyan */
+  --accent-primary: #00E5FF; 
+  --accent-primary-dark: #0099CC;
+  --cyan-glow: rgba(0, 229, 255, 0.35);
+  
+  /* Premium Gold */
+  --gold: #C79F3F;
+  --gold-dark: #A6822D;
+  --gold-glow: rgba(199, 159, 63, 0.2);
+
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.08); /* Brighter glass */
+  --glass-border: rgba(255, 255, 255, 0.12); /* More visible border */
+  --glass-blur: 24px;
+
+  /* Fonts */
+  --font-serif: var(--font-serif);
+}
+
+
+@theme {
+  --color-accent-primary: var(--accent-primary);
+  --color-gold: var(--gold);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased selection:bg-[var(--accent-primary)] selection:text-[#03141A];
+    font-family: var(--font-outfit), sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(199, 159, 63, 0.02) 0%, transparent 50%);
+    min-height: 100vh;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Buttons System */
+  .btn-primary {
+    @apply relative px-8 py-3 rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+    color: #03141A;
+    box-shadow: 0 0 25px var(--cyan-glow);
+  }
+  .btn-primary:hover {
+    @apply scale-[1.02];
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.5);
+  }
+
+  .btn-gold {
+    @apply relative px-8 py-3 rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-2;
+    background: var(--gold);
+    color: #000;
+  }
+  .btn-gold:hover {
+    @apply brightness-110;
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+
+  .btn-ghost-glass {
+    @apply px-8 py-3 rounded-full font-bold border transition-all duration-300 backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(0, 229, 255, 0.2);
+    color: #fff;
+  }
+  .btn-ghost-glass:hover {
+    @apply border-[var(--accent-primary)] bg-white/5;
+  }
+
+  /* Glass Cards System */
+  .glass-card {
+    @apply rounded-[24px] border border-[var(--glass-border)] transition-all duration-500 overflow-hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+  }
+  
+  .glass-card-ai {
+    @apply glass-card;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
+  }
+  .glass-card-ai:hover {
+    @apply border-[var(--accent-primary)]/20;
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.1);
+  }
+
+  .glass-card-premium {
+    @apply glass-card;
+  }
+  .glass-card-premium:hover {
+    @apply border-[var(--gold)]/20;
+  }
+
+  /* AI Elements */
+  .ai-badge {
+    @apply px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5;
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+  }
+
+  .ai-panel {
+    @apply glass-card border-[var(--accent-primary)]/20 p-6;
+  }
+
+  /* Layout Utilities */
+  .luxury-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+.text-gold { color: var(--gold); }
+.text-cyan { color: var(--accent-primary); }
+
+.font-premium {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 15px var(--cyan-glow);
+}
+
