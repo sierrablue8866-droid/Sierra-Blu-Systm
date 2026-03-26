@@ -6,6 +6,8 @@ import {
   query,
   orderBy,
   Timestamp,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 import { getFirebaseApp } from "./firebase";
 
@@ -67,22 +69,55 @@ export type OfferType = "RS" | "RR" | "CS" | "CR";
 
 export interface Property {
   id?: string;
+  code?: string;
   referenceNumber: string;
+  source?: string;
   title: string;
   description: string;
-  propertyType: PropertyType;
-  offerType: OfferType;
-  price: number;
-  city: string;
-  community: string;
-  subCommunity?: string;
+  compound?: string;
   bedrooms: number;
   bathrooms: number;
-  size: number;
-  agentRef: string; // Reference to Agent ID
+  area?: number;
+  price: number;
+  currency?: string;
+  furnished?: string; // Updated to string to match mockup (e.g., "Fully Furnished")
+  garden?: boolean;
+  pool?: boolean; // Added
+  view?: boolean; // Added
+  smartHome?: boolean; // Added
+  status?: string;
+  isPublished?: boolean;
+  leadsCount?: number;
+  unpublishReason?: string;
+  whatsappContent?: string;
+  propertyFinderContent?: string;
+  advisorChecked?: boolean;
+  updatedAt: string;
+  createdAt?: Timestamp | string;
+  location?: string;
+  landmarks?: string[];
   images: string[];
+  video?: string;
+  hasVirtualTour?: boolean;
+  virtualTourStatus?: "Live" | "Soon" | "None";
+  virtualTourUrl?: string;
+  has3DMedia?: boolean;
+  threeDPreviewImage?: string;
+  // Metadata for tracking
+  createdBy?: string;
+  createdByEmail?: string;
+  ownerName?: string;
+  phoneNumber?: string;
+  // Legacy fields retained for safety
+  propertyType?: PropertyType;
+  offerType?: OfferType;
+  size?: number;
+  agentRef?: string;
   facilities?: string[];
-  updatedAt: string; // ISO 8601 Date String
+  publishedAt?: Timestamp | string;
+  city?: string;
+  community?: string;
+  subCommunity?: string;
 }
 
 const isPropertyType = (value: unknown): value is PropertyType =>
@@ -93,14 +128,16 @@ const isOfferType = (value: unknown): value is OfferType =>
 
 const mapProperty = (id: string, data: Record<string, unknown>): Property => ({
   id,
+  code: asString(data.code),
   referenceNumber: asString(data.referenceNumber, id),
   title: asString(data.title, "Untitled Property"),
   description: asString(data.description, "Property details are being prepared."),
+  compound: asString(data.compound),
   propertyType: isPropertyType(data.propertyType) ? data.propertyType : "AP",
   offerType: isOfferType(data.offerType) ? data.offerType : "RS",
   price: asNumber(data.price),
-  city: asString(data.city, "Cairo"),
-  community: asString(data.community, "New Cairo"),
+  city: asString(data.city),
+  community: asString(data.community),
   subCommunity: asString(data.subCommunity),
   bedrooms: asNumber(data.bedrooms),
   bathrooms: asNumber(data.bathrooms),
@@ -109,12 +146,25 @@ const mapProperty = (id: string, data: Record<string, unknown>): Property => ({
   images: asStringArray(data.images),
   facilities: asStringArray(data.facilities),
   updatedAt: asString(data.updatedAt, new Date().toISOString()),
+  isPublished: typeof data.isPublished === "boolean" ? data.isPublished : true,
+  leadsCount: asNumber(data.leadsCount, 0),
+  publishedAt: data.publishedAt as Timestamp | string | undefined,
+  createdBy: asString(data.createdBy),
+  createdByEmail: asString(data.createdByEmail),
+  ownerName: asString(data.ownerName),
+  phoneNumber: asString(data.phoneNumber),
+  furnished: asString(data.furnished),
+  garden: !!data.garden,
+  pool: !!data.pool,
+  view: !!data.view,
+  smartHome: !!data.smartHome,
 });
 
 export const getProperties = async (): Promise<Property[]> => {
   try {
     const propertiesCol = collection(db, "properties");
-    const propertiesSnapshot = await getDocs(propertiesCol);
+    const propertiesQuery = query(propertiesCol, orderBy("updatedAt", "desc"));
+    const propertiesSnapshot = await getDocs(propertiesQuery);
     return propertiesSnapshot.docs.map((doc) =>
       mapProperty(doc.id, doc.data() as Record<string, unknown>),
     );
@@ -123,3 +173,23 @@ export const getProperties = async (): Promise<Property[]> => {
     return [];
   }
 };
+
+export const addProperty = async (property: Omit<Property, "id">) => {
+  const propertiesCol = collection(db, "properties");
+  return await addDoc(propertiesCol, {
+    ...property,
+    updatedAt: new Date().toISOString(),
+    createdAt: Timestamp.now(),
+  });
+};
+
+export const unpublishProperty = async (propertyId: string, leadsFound: number) => {
+  const propertyRef = doc(db, "properties", propertyId);
+  await updateDoc(propertyRef, {
+    isPublished: false,
+    leadsCount: leadsFound,
+    unpublishReason: "Low performance (Under 2 leads automatically detected by Advisory AI)",
+    updatedAt: new Date().toISOString(),
+  });
+};
+

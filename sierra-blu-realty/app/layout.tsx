@@ -1,28 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Outfit, Cormorant_Garamond } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { Inter, Playfair_Display } from "next/font/google";
+import { AuthProvider } from "@/lib/auth-context";
 import { SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -41,14 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <AuthProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${cormorantGaramond.variable} antialiased font-outfit`}
+          className={`${inter.variable} ${playfair.variable} antialiased`}
         >
           {children}
         </body>
       </html>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }
+

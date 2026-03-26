@@ -3,126 +3,180 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { MapPin, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import MotionContainer from "./MotionContainer";
+import { fadeIn, staggerContainer } from "@/lib/motion";
+
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop";
+
+const FEATURED = [
+  {
+    title: "Marasem Villas",
+    loc: "Fifth Settlement",
+    beds: 4,
+    price: "EGP 18M",
+    img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800&auto=format&fit=crop",
+    badge: "AI Verified",
+  },
+  {
+    title: "Hyde Park Residence",
+    loc: "New Cairo",
+    beds: 3,
+    price: "EGP 12M",
+    img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop",
+    badge: "Exclusive",
+  },
+  {
+    title: "La Vista City",
+    loc: "Golden Square",
+    beds: 5,
+    price: "EGP 22M",
+    img: "https://images.unsplash.com/photo-1600607687940-467f4b630a19?q=80&w=800&auto=format&fit=crop",
+    badge: "Yield +12%",
+  },
+];
 
 export default function Hero() {
-  const heroImage = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop";
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-
-  // Parallax effects
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 1.1]);
+  const imgY = useTransform(scrollY, [0, 1000], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
-    <section className="relative min-h-[110vh] flex flex-col items-center justify-center pt-24 pb-32 overflow-hidden bg-[#050510]">
-      {/* Immersive Background */}
-      <motion.div 
-        style={{ opacity, scale }}
-        className="absolute inset-0 z-0"
+    <section
+      ref={ref}
+      className="relative min-h-[100vh] flex flex-col justify-center overflow-hidden bg-background"
+    >
+      {/* ── Cinematic Background ── */}
+      <motion.div
+        style={{ y: imgY, opacity }}
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <Image
-          src={heroImage}
-          alt="Cinematic luxury villa"
+          src={HERO_IMAGE}
+          alt="Sierra Blu Luxury Property"
           fill
           priority
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="object-cover object-center scale-105 animate-slow-zoom"
+          sizes="100vw"
         />
-        {/* Deep blue/purple cinematic overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050510]/80 via-[#0A0A16]/40 to-[#050510]" />
-        <div className="absolute inset-0 bg-[#050510]/30 mix-blend-multiply" />
+        {/* Dynamic Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent" />
       </motion.div>
 
-      <div className="container relative z-10 px-6 max-w-7xl text-center flex flex-col items-center">
-        {/* Top Brand Mark */}
-        <motion.div
-           initial={{ opacity: 0, y: -20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1 }}
-           className="mb-8"
+      {/* Ambient Glows */}
+      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 blur-[140px] rounded-full -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent-primary/5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2" />
+
+      {/* ── Content ── */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pt-32 pb-16">
+        <MotionContainer
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="space-y-12"
         >
-           <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-[0.4em] font-premium text-gold text-glow-gold">
-              Sierra Blu Realty
-           </h2>
-        </motion.div>
+          {/* Label */}
+          <motion.div variants={fadeIn} className="flex items-center gap-4">
+             <span className="w-12 h-[1px] bg-gold/40" />
+             <span className="text-[10px] uppercase font-bold tracking-[0.5em] text-gold drop-shadow-sm">
+               Strategic AI Real Estate Advisory
+             </span>
+          </motion.div>
 
-        {/* Main Headline */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl md:text-7xl font-light mb-12 leading-[1.2] font-premium text-white max-w-4xl"
-        >
-          AI-Driven — <span className="font-normal text-cyan">Smarter Decisions</span>
-        </motion.h1>
+          {/* Main Headline */}
+          <motion.h1
+            variants={fadeIn}
+            className="text-6xl md:text-8xl lg:text-[9rem] font-luxury leading-[0.9] text-white tracking-tight"
+          >
+            Structural <br />
+            <span className="text-gold italic text-glow-gold">Intelligence.</span>
+          </motion.h1>
 
-        {/* CTA Area */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center gap-6 mb-24"
-        >
-          <Link href="/listings" className="btn-primary min-w-[200px]">
-             Beyond Brokerage
-          </Link>
-          <Link href="/about" className="btn-ghost-glass min-w-[200px]">
-             Our Philosophy
-          </Link>
-        </motion.div>
+          {/* Tagline */}
+          <motion.p
+            variants={fadeIn}
+            className="text-[#AEB4C6] text-xl font-light leading-relaxed max-w-2xl"
+          >
+            Sierra Blu defines the intersection of high-fidelity luxury and algorithmic precision. 
+            We secure the most exclusive assets in New Cairo for a discerning global clientele.
+          </motion.p>
 
+          {/* ── Search Bar / CTA ── */}
+          <motion.div
+            variants={fadeIn}
+            className="flex flex-col sm:flex-row items-stretch gap-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 max-w-2xl overflow-hidden group hover:border-gold/30 transition-all duration-500 shadow-2xl"
+          >
+            <div className="flex items-center gap-4 flex-1 px-6 py-4">
+              <MapPin className="w-5 h-5 text-gold flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Region, compound or structural requirement…"
+                className="flex-1 text-lg text-white placeholder:text-white/20 outline-none bg-transparent font-light"
+              />
+            </div>
+            <Link
+              href="/listings"
+              className="bg-gold text-background px-10 py-5 flex items-center justify-center gap-3 font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-white transition-all transform hover:scale-[1.02] active:scale-95"
+            >
+              Analyze Market <ChevronRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
 
-        {/* Feature Tray (Bottom Hero) */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="w-full mt-auto"
-        >
-           <div className="flex flex-col items-start mb-6">
-              <span className="text-[10px] uppercase tracking-[0.4em] text-[var(--accent-primary)] font-bold mb-2">Upcoming Featured Properties</span>
-              <div className="w-12 h-0.5 bg-[var(--accent-primary)] shadow-[0_0_10px_var(--accent-primary)]"></div>
-           </div>
-
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-              {[
-                { title: "The Obsidian Villa", loc: "Katameya Heights", img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop" },
-                { title: "Azure Heights", loc: "New Capital", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" },
-                { title: "Lumina Estate", loc: "Mivida", img: "https://images.unsplash.com/photo-1600607687940-467f4b630a19?q=80&w=2070&auto=format&fit=crop" },
-                { title: "Neon Skyline", loc: "Golden Square", img: "https://images.unsplash.com/photo-1541888086225-ee826be0c2b2?q=80&w=2070&auto=format&fit=crop" }
-              ].map((prop, i) => (
-                <div key={i} className="group relative h-48 rounded-2xl overflow-hidden glass border-white/5 cursor-pointer">
-                   <Image 
-                     src={prop.img} 
-                     alt={prop.title}
-                     fill 
-                     className="object-cover opacity-50 transition-all duration-700 group-hover:scale-110 group-hover:opacity-80"
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent " />
-                   <div className="absolute bottom-4 left-4 text-left">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent-primary)] mb-1">{prop.loc}</p>
-                      <h4 className="text-sm font-bold text-white group-hover:text-[var(--accent-primary)] transition-colors">{prop.title}</h4>
-                   </div>
-                </div>
+          {/* ── Featured Property Tray ── */}
+          <motion.div
+            variants={fadeIn}
+            className="pt-12"
+          >
+            <p className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+              <span className="w-6 h-px bg-white/10" /> Vetted Portfolios
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl">
+              {FEATURED.map((p, i) => (
+                <Link
+                  key={i}
+                  href="/listings"
+                  className="group relative h-48 rounded-xl overflow-hidden glass-card p-0 border-white/5"
+                >
+                  <Image
+                    src={p.img}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
+                  
+                  <span className="absolute top-4 left-4 text-[9px] uppercase tracking-[0.2em] font-bold px-3 py-1 bg-gold/90 text-background rounded-full">
+                    {p.badge}
+                  </span>
+                  
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-[#AEB4C6] text-[10px] uppercase tracking-[0.1em] mb-1 font-medium">{p.loc}</p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-white text-sm font-luxury">{p.title}</p>
+                      <span className="text-gold text-xs font-bold tracking-tight">{p.price}</span>
+                    </div>
+                  </div>
+                </Link>
               ))}
-           </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        </MotionContainer>
       </div>
 
-      {/* Floating Action / Advisor button fixed but adjusted */}
+      {/* Scroll indicator */}
       <motion.div 
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
-        className="fixed bottom-12 right-12 z-40 hidden lg:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <Link href="/portal" className="glass flex items-center gap-4 px-6 py-4 border-[var(--accent-primary)]/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-105 transition-all group">
-            <div className="w-12 h-12 bg-[var(--accent-primary)] rounded-full flex items-center justify-center text-[var(--background)] shadow-[0_0_20px_var(--accent-glow-strong)] transition-shadow group-hover:shadow-[0_0_40px_var(--accent-glow-strong)]">
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3c0 1.13-.91 2.08-2.04 2.02A19.88 19.88 0 0 1 3.08 4.02C3.02 2.89 3.97 1.98 5.1 2h3c.96 0 1.8.63 2.06 1.56.26.96-.13 1.96-.83 2.6L7.5 7.92a15.42 15.42 0 0 0 8.58 8.58l1.76-1.83c.64-.7 1.64-1.09 2.6-.83.93.26 1.56 1.1 1.56 2.06z"/></svg>
-            </div>
-            <div className="flex flex-col text-left">
-               <span className="text-[10px] uppercase font-bold tracking-widest text-[#4E5872]">Private Access</span>
-               <span className="text-white font-bold group-hover:text-[var(--accent-primary)] transition-colors">Advisor Portal</span>
-            </div>
-        </Link>
+        <span className="text-[10px] uppercase tracking-[0.5em] text-white/20 rotate-180 [writing-mode:vertical-lr]">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-gold/40 to-transparent" />
       </motion.div>
     </section>
   );

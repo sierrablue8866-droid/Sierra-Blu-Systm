@@ -45,7 +45,7 @@ export async function GET() {
     xml += `<list last_update="${new Date().toISOString()}">\n`;
 
     propertiesToRender.forEach((prop) => {
-      const agent = agentsMap[prop.agentRef] || {
+      const agent = (prop.agentRef ? agentsMap[prop.agentRef] : undefined) || {
         name: "Sierra Blu Advisory",
         email: "advisory@sierra-blu.com",
         phone: "+20 2 3333 7810"

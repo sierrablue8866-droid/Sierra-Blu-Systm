@@ -1,0 +1,10 @@
+
+> sierra-blu-realty@0.1.0 lint
+> eslint
+
+
+C:\Users\sierr\sierra-blu-realty\app\api\cron\track-leads\route.ts
+  29:45  warning  '_' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+

@@ -1,0 +1,128 @@
+(node:10008) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+   Thank you for trying our [3mearly preview[23m of Next.js support on Firebase Hosting.
+   [31mDuring the preview, support is best-effort and breaking changes can be expected. Proceed with caution.[39m[33m
+   The integration is known to work with Next.js version [3m12 - 15.0[23m. You may encounter errors.[39m
+
+   [1mDocumentation:[22m https://firebase.google.com/docs/hosting/frameworks/nextjs
+   [1mFile a bug:[22m https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   [1mSubmit a feature request:[22m https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+▲ Next.js 16.1.6 (Turbopack)
+
+- Environments: .env.local
+
+
+
+  Creating an optimized production build ...
+
+✓ Compiled successfully in 14.8s
+
+  Running TypeScript ...
+
+  Collecting page data using 11 workers ...
+
+  Generating static pages using 11 workers (0/14) ...
+
+  Generating static pages using 11 workers (3/14) 
+
+  Generating static pages using 11 workers (6/14) 
+
+  Generating static pages using 11 workers (10/14) 
+
+✓ Generating static pages using 11 workers (14/14) in 2.7s
+
+  Finalizing page optimization ...
+
+
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /advisors
+├ ƒ /api/propertyfinder
+├ ○ /contact
+├ ○ /journal
+├ ○ /listings
+├ ƒ /listings/[id]
+├ ○ /login
+├ ○ /portal
+├ ○ /projects
+└ ○ /services
+
+
+ƒ Proxy (Middleware)
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+Building a Cloud Function to run this application. This is needed due to:
+ • non-static component /(cores)/listings/[id]/page
+ • non-static component /api/propertyfinder/route
+ • route with server action /advisors
+ • route with server action /journal
+ • route with server action /listings/[id]
+ • and 10 other reasons, use --debug to see more
+
+[33m[1m! [22m[39m This integration expects Node version 20, 22, or 24. You're running version 25, problems may be encountered.
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'sierra-blu-realty@0.1.0',
+npm warn EBADENGINE   required: { node: '24' },
+npm warn EBADENGINE   current: { node: 'v25.5.0', npm: '11.11.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'firebase-frameworks@0.11.8',
+npm warn EBADENGINE   required: { node: '^16.0.0 || ^18.0.0 || ^20.0.0 || ^22.0.0' },
+npm warn EBADENGINE   current: { node: 'v25.5.0', npm: '11.11.0' }
+npm warn EBADENGINE }
+
+up to date in 25s
+
+43 packages are looking for funding
+  run `npm fund` for details
+[36m[1mi  hosting:[22m[39m The following function(s) are pinned to site [1msierra-blu-system-59b22[22m and will be deployed as well: [1mssrsierrablusystem59b22[22m
+
+[1m[37m===[39m Deploying to 'sierra-blu-system-59b22'...[22m
+
+[36m[1mi [22m[39m deploying [1mfunctions, hosting[22m
+[36m[1mi  functions:[22m[39m preparing codebase [1mfirebase-frameworks-sierra-blu-system-59b22[22m for deployment
+[36m[1mi  functions:[22m[39m ensuring required API [1mcloudfunctions.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m ensuring required API [1mcloudbuild.googleapis.com[22m is enabled...
+[36m[1mi  artifactregistry:[22m[39m ensuring required API [1martifactregistry.googleapis.com[22m is enabled...
+[33m[1m! [22m[39m [1m[33mfunctions: [39m[22mpackage.json indicates an outdated version of firebase-functions. Please upgrade using [1mnpm install --save firebase-functions@latest[22m in your functions directory.
+[33m[1m! [22m[39m [1m[33mfunctions: [39m[22mPlease note that there will be breaking changes when you upgrade.
+[36m[1mi  functions:[22m[39m Loading and analyzing source code for codebase firebase-frameworks-sierra-blu-system-59b22 to determine what to deploy
+Serving at port 8687
+
+[36m[1mi  extensions:[22m[39m ensuring required API [1mfirebaseextensions.googleapis.com[22m is enabled...
+[36m[1mi [22m[39m [36m[1mfunctions: [22m[39mLoaded environment variables from .env.
+[36m[1mi  functions:[22m[39m preparing [1m.firebase\sierra-blu-system-59b22\functions[22m directory for uploading...
+[36m[1mi [22m[39m [36m[1mfunctions:[22m[39m packaged [1mC:\Users\sierr\sierra-blu-realty\.firebase\sierra-blu-system-59b22\functions[22m (182.65 MB) for uploading
+[36m[1mi  functions:[22m[39m ensuring required API [1mrun.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m ensuring required API [1meventarc.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m ensuring required API [1mpubsub.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m ensuring required API [1mstorage.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m generating the service identity for [1mpubsub.googleapis.com[22m...
+[36m[1mi  functions:[22m[39m generating the service identity for [1meventarc.googleapis.com[22m...
+[32m[1m+  functions:[22m[39m [1m.firebase\sierra-blu-system-59b22\functions[22m source uploaded successfully
+[36m[1mi  hosting[sierra-blu-system-59b22]:[22m[39m beginning deploy...
+[36m[1mi  hosting[sierra-blu-system-59b22]:[22m[39m found 62 files in [1m.firebase\sierra-blu-system-59b22\hosting[22m
+[36m[1mi  hosting:[22m[39m uploading new files [0/15] ([1m[32m0%[39m[22m)
+[36m[1mi  hosting:[22m[39m upload complete
+[32m[1m+  hosting[sierra-blu-system-59b22]:[22m[39m file upload complete
+[36m[1mi  functions:[22m[39m updating Node.js 24 (2nd Gen) function [1mfirebase-frameworks-sierra-blu-system-59b22:ssrsierrablusystem59b22(us-central1)[22m...
+Build failed with status: FAILURE. Could not build the function due to a missing permission on the build service account. If you didn't revoke that permission explicitly, this could be caused by a change in the organization policies. Please refer to the following documentation for more details and resolution: https://cloud.google.com/functions/docs/troubleshooting#build-service-account
+ You can also view the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/c1d22ff9-b1fc-4af6-a086-e1140faf9fbe?project=894977812589.
+
+
+Functions deploy had errors with the following functions:
+	firebase-frameworks-sierra-blu-system-59b22:ssrsierrablusystem59b22(us-central1)
+[33m[1m!  functions:[22m[39m No cleanup policy detected for repositories in us-central1. This may result in a small monthly bill as container images accumulate over time.
+
+[1m[31mError:[39m[22m Functions successfully deployed but could not set up cleanup policy in location us-central1. Pass the --force option to automatically set up a cleanup policy or run 'firebase functions:artifacts:setpolicy' to manually set up a cleanup policy.

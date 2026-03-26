@@ -1,87 +1,148 @@
 import Link from "next/link";
+import { Phone, Mail, MapPin, Instagram, Facebook, ArrowRight } from "lucide-react";
 import { CONTACT, NAV_LINKS } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#0A1128] border-t border-white/5 pt-20 pb-10 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-          <div className="col-span-1 lg:col-span-1 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 border-2 border-[var(--accent-primary)] opacity-80 rounded-full flex items-center justify-center p-1 overflow-hidden bg-black/20">
-                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--accent-primary)]">
-                    <path d="M12 2L4 7V17L12 22L20 17V7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 12L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 12L4 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 12L20 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                 </svg>
+    <footer className="section-navy" id="contact">
+      {/* ── Top CTA Band ── */}
+      <div className="border-b border-white/10">
+        <div className="section-wrap py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <p className="label-tag text-[var(--gold-400)] mb-2">Ready to find your property?</p>
+            <h2 className="font-display text-3xl md:text-4xl text-white font-medium">
+              Let&apos;s Talk.
+            </h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/contact" className="btn-gold">
+              Book a Consultation
+            </Link>
+            <Link href="/listings" className="btn-outline border-white/30 text-white hover:bg-white hover:text-[var(--navy-900)]">
+              View Listings
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Main Grid ── */}
+      <div className="section-wrap py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+          {/* Brand column */}
+          <div className="lg:col-span-1 space-y-6">
+            <Link href="/" className="inline-block group">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gold/15 blur-2xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo.png"
+                  alt="Sierra Blu Realty"
+                  className="relative z-10 h-20 w-auto object-contain drop-shadow-[0_2px_12px_rgba(212,175,55,0.35)] group-hover:drop-shadow-[0_4px_20px_rgba(212,175,55,0.6)] transition-all duration-700"
+                />
               </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-xl font-bold tracking-tighter uppercase text-white font-premium">Sierra-Blu</span>
-                <span className="text-[9px] uppercase tracking-[0.5em] text-[var(--accent-primary)] opacity-80 font-medium -mt-1 ml-0.5">ESTATE ADVISORY</span>
-              </div>
-            </div>
-            <p className="text-[#C7CCDB] text-sm leading-relaxed max-w-xs">
-              Smarter Decisions, AI-Driven. Private advisory for New Cairo&apos;s most refined residences. Beyond Brokerage.
+            </Link>
+            <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-12">
+              Architecting the future of property acquisition in Egypt through structural precision and AI-powered intelligence.
             </p>
+            {/* Social */}
+            <div className="flex items-center gap-3">
+              {[
+                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Facebook, href: "#", label: "Facebook" },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:border-[var(--gold-500)] hover:text-[var(--gold-400)] transition-all duration-300"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
+          {/* Navigation */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-8">Navigation</h4>
-            <ul className="space-y-4 text-sm text-[#AEB4C6]">
-              <li><Link href="/" className="hover:text-[var(--accent-primary)] transition-colors">Home</Link></li>
+            <h4 className="label-tag text-[var(--gold-400)] mb-6">Navigation</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/" className="text-white/50 hover:text-white text-sm transition-colors duration-200">
+                  Home
+                </Link>
+              </li>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-[var(--accent-primary)] transition-colors">
+                  <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors duration-200">
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li><Link href="/#neighborhoods" className="hover:text-[var(--accent-primary)] transition-colors">Neighborhoods</Link></li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-8">Contact</h4>
-            <ul className="space-y-4 text-sm text-[#AEB4C6]">
-              <li className="flex items-center gap-3">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3c0 1.13-.91 2.08-2.04 2.02A19.88 19.88 0 0 1 3.08 4.02C3.02 2.89 3.97 1.98 5.1 2h3c.96 0 1.8.63 2.06 1.56.26.96-.13 1.96-.83 2.6L7.5 7.92a15.42 15.42 0 0 0 8.58 8.58l1.76-1.83c.64-.7 1.64-1.09 2.6-.83.93.26 1.56 1.1 1.56 2.06z"/></svg>
-                <a href={CONTACT.phoneHref} className="hover:text-white transition-colors">{CONTACT.phoneDisplay}</a>
+            <h4 className="label-tag text-[var(--gold-400)] mb-6">Contact</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href={CONTACT.phoneHref}
+                  className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors duration-200 group"
+                >
+                  <Phone className="w-4 h-4 text-[var(--gold-500)] flex-shrink-0" />
+                  {CONTACT.phoneDisplay}
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href={CONTACT.emailHref} className="hover:text-white transition-colors">{CONTACT.email}</a>
+              <li>
+                <a
+                  href={CONTACT.emailHref}
+                  className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors duration-200 group"
+                >
+                  <Mail className="w-4 h-4 text-[var(--gold-500)] flex-shrink-0" />
+                  {CONTACT.email}
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-white/50 text-sm">
+                <MapPin className="w-4 h-4 text-[var(--gold-500)] flex-shrink-0 mt-0.5" />
+                <span>Fifth Settlement, New Cairo, Egypt</span>
               </li>
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-8">Newsletter</h4>
-            <p className="text-[#AEB4C6] text-xs leading-relaxed uppercase tracking-wider">
-               Join our private mailing list <br/> for signature listings.
+          {/* Newsletter */}
+          <div>
+            <h4 className="label-tag text-[var(--gold-400)] mb-6">Private Newsletter</h4>
+            <p className="text-white/40 text-sm font-light leading-relaxed mb-5">
+              Get curated property picks and market intelligence delivered directly to you.
             </p>
-            <div className="flex gap-2">
-              <input 
-                type="email" 
-                placeholder="EMAIL" 
-                className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs w-full focus:outline-none focus:border-[var(--accent-primary)]"
+            <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-2">
+              <input
+                type="email"
+                placeholder="Your email"
+                className="flex-1 bg-transparent text-white text-sm placeholder:text-white/30 outline-none px-2"
               />
-              <button className="w-10 h-10 bg-[var(--accent-primary)] rounded-full flex items-center justify-center text-[#0A1128]">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              <button
+                aria-label="Subscribe"
+                className="w-9 h-9 bg-[var(--gold-500)] rounded-lg flex items-center justify-center text-white hover:bg-[var(--gold-400)] transition-colors flex-shrink-0"
+              >
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-           <span className="text-[10px] uppercase tracking-[0.4em] text-[#4E5872]">
-              © 2026 Sierra-Blu Realty. Private Client Portfolio.
-           </span>
-           <div className="flex gap-8 text-[10px] uppercase tracking-[0.3em] text-[#4E5872]">
-              <Link href="/services" className="hover:text-[#AEB4C6] transition-colors">Services</Link>
-              <a href={CONTACT.emailHref} className="hover:text-[#AEB4C6] transition-colors">Email</a>
-              <Link href="/portal" className="hover:text-[#AEB4C6] transition-colors">Portal</Link>
-           </div>
+        {/* ── Bottom Bar ── */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/30 text-[11px] uppercase tracking-[0.3em]">
+            © 2026 Sierra Blu Realty. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6 text-[11px] uppercase tracking-[0.25em] text-white/30">
+            <Link href="/privacy" className="hover:text-[var(--gold-400)] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[var(--gold-400)] transition-colors">Terms of Use</Link>
+            <Link href="/portal" className="hover:text-[var(--gold-400)] transition-colors">Staff Portal</Link>
+          </div>
         </div>
       </div>
     </footer>

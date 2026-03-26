@@ -108,11 +108,11 @@ export default async function PropertyDetailPage({ params }: PageProps) {
               <div className="grid grid-cols-2 gap-6 mb-8 text-[10px] tracking-widest uppercase">
                 <div>
                   <span className="text-white/30 block mb-1">Beds</span>
-                  <span className="text-white">{property.bedrooms} Units</span>
+                  <span className="text-white">{property.bedrooms} Bedrooms</span>
                 </div>
                 <div>
                   <span className="text-white/30 block mb-1">Baths</span>
-                  <span className="text-white">{property.bathrooms} Units</span>
+                  <span className="text-white">{property.bathrooms} Bathrooms</span>
                 </div>
                 <div>
                   <span className="text-white/30 block mb-1">Area</span>
@@ -120,11 +120,11 @@ export default async function PropertyDetailPage({ params }: PageProps) {
                 </div>
                 <div>
                   <span className="text-white/30 block mb-1">Type</span>
-                  <span className="text-white">{formatPropertyType(property.propertyType)}</span>
+                  <span className="text-white">{property.propertyType ? formatPropertyType(property.propertyType) : "Apartment"}</span>
                 </div>
                 <div>
                   <span className="text-white/30 block mb-1">Offer</span>
-                  <span className="text-white">{formatOfferType(property.offerType)}</span>
+                  <span className="text-white">{property.offerType ? formatOfferType(property.offerType) : "For Sale"}</span>
                 </div>
                 <div>
                   <span className="text-white/30 block mb-1">Location</span>
@@ -132,17 +132,17 @@ export default async function PropertyDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              <a
+                <a
                 href={inquiryHref}
                 className="block w-full bg-[var(--accent-primary)] text-[#0A0A24] py-4 text-center text-[10px] font-bold uppercase tracking-[0.3em] hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,229,255,0.2)]"
               >
-                Inquire / Schedule
+                Request Private Viewing
               </a>
             </div>
 
             <div>
               <h3 className="text-[10px] tracking-[0.2em] text-[#AEB4C6] uppercase mb-4">
-                Technical Features
+                Signature Amenities
               </h3>
               <ul className="flex flex-col gap-2">
                 {(property.facilities?.length ? property.facilities : ["Private Advisory", "Site Visit Coordination"]).map((f) => (
