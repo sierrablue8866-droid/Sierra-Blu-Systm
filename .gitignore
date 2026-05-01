@@ -1,21 +1,43 @@
 node_modules
+codex
+.vercel
+.env*.local
 
 # Local agent and desktop app state
 .codex/
 .agents/
 .aitk/
 .antigravity/
+.cagent/
 .claude/
 .cline/
+.codebuddy/
 .codeium/
 .copilot/
 .cursor/
 .gemini/
+.genkit/
+.gk/
 .mcp-auth/
+.ms-ad/
 .openclaw/
 .pm2/
 .qwen/
+.redhat/
+.rest-client/
+.robocorp-code/
 .windsurf/
+
+# Local system & toolchain dirs
+.local/
+.nuget/
+.ssh/
+.templateengine/
+.venv/
+.gnupg/
+.aws/
+.azure/
+.azd/
 
 # Home-directory noise and machine-specific data
 AppData/
@@ -53,6 +75,7 @@ Videos/
 AppData/Roaming/Cursor/Backups/
 AppData/Roaming/Cursor/User/workspaceStorage/
 AppData/Roaming/Cursor/logs/
+
 # MacOS
 .DS_Store
 
@@ -88,8 +111,3 @@ ENV/
 *.swp
 *.swo
 *~
-
-# Cursor backups (redundant, but explicit)
-AppData/Roaming/Cursor/Backups/
-AppData/Roaming/Cursor/User/workspaceStorage/
-AppData/Roaming/Cursor/logs/
