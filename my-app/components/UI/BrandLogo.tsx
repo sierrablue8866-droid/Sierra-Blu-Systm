@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   themeOverride?: 'dark' | 'light';
-  /** 'wordmark' = existing horizontal text logo (default) | 'emblem' = new gold shield mark */
-  variant?: 'wordmark' | 'emblem';
+  /** 'wordmark' = horizontal text logo | 'emblem' = SVG shield | 'shield' = official PNG shield mark (default) */
+  variant?: 'wordmark' | 'emblem' | 'shield';
 }
 
 /**
@@ -23,7 +23,7 @@ interface BrandLogoProps {
 export default function BrandLogo({
   size = 'md',
   themeOverride,
-  variant = 'wordmark',
+  variant = 'shield',
 }: BrandLogoProps) {
   const [currentTheme, setCurrentTheme] = useState('dark');
 
@@ -63,7 +63,31 @@ export default function BrandLogo({
 
   const isLight = currentTheme === 'light';
 
-  // ── EMBLEM VARIANT ───────────────────────────────────────────────────────
+  // ── SHIELD VARIANT (official PNG logo — navy/gold crest) ────────────────
+  if (variant === 'shield') {
+    const { width, height } = emblemSizes[size];
+    return (
+      <img
+        src="/sierra-blu-logo.png"
+        alt="Sierra Blu Realty"
+        draggable={false}
+        width={width}
+        height={height}
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+          objectFit: 'contain',
+          userSelect: 'none',
+          filter: isLight
+            ? 'drop-shadow(0 1px 3px rgba(212,175,55,0.4))'
+            : 'drop-shadow(0 2px 8px rgba(212,175,55,0.35))',
+          transition: 'filter 0.4s ease',
+        }}
+      />
+    );
+  }
+
+  // ── EMBLEM VARIANT (SVG) ─────────────────────────────────────────────────
   if (variant === 'emblem') {
     const { width, height } = emblemSizes[size];
     return (
@@ -77,7 +101,6 @@ export default function BrandLogo({
           width: `${width}px`,
           height: `${height}px`,
           userSelect: 'none',
-          // In light mode apply a subtle filter to keep the gold visible on ivory
           filter: isLight
             ? 'drop-shadow(0 1px 3px rgba(212,175,55,0.4))'
             : 'drop-shadow(0 2px 8px rgba(212,175,55,0.35))',
