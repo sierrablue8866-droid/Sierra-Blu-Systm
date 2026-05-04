@@ -19,12 +19,12 @@
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "phase-2-ready" ]
   workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: 'my-app' # Phase 2: main app lives in my-app/
   NODE_VERSION: '20.x'                # set this to the node version to use
 
 permissions:
@@ -43,10 +43,11 @@ jobs:
         cache: 'npm'
 
     - name: npm install, build, and test
+      working-directory: my-app
       run: |
         npm install
         npm run build --if-present
-        npm run test --if-present
+        npm run test:ci --if-present
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4

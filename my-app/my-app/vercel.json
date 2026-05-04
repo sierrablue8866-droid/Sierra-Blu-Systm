@@ -1,0 +1,41 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/sync-leads",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/ingest-from-sheets",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/maintenance",
+      "schedule": "0 2 * * *"
+    }
+  ],
+  "functions": {
+    "app/api/agent/hub/route.ts": { "maxDuration": 60 },
+    "app/api/orchestrate/route.ts": { "maxDuration": 60 },
+    "app/api/ingest/whatsapp/route.ts": { "maxDuration": 30 },
+    "app/api/sync/route.ts": { "maxDuration": 60 },
+    "app/api/matching/route.ts": { "maxDuration": 30 },
+    "app/api/wealth/roi/route.ts": { "maxDuration": 30 },
+    "app/api/concierge/[leadId]/route.ts": { "maxDuration": 30 }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "https://my-app-beta-blond-99.vercel.app" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, X-SBR-SECRET-KEY, X-Cron-Secret" }
+      ]
+    },
+    {
+      "source": "/api/webhooks/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
