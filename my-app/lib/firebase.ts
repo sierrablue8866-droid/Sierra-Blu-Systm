@@ -24,4 +24,15 @@ const app: FirebaseApp = getApps().length
 export const auth: Auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
 export const storage: FirebaseStorage = getStorage(app);
+
+export function getAnalyticsInstance() {
+  if (typeof window === 'undefined') return null;
+  try {
+    const { getAnalytics } = require('firebase/analytics');
+    return getAnalytics(app);
+  } catch {
+    return null;
+  }
+}
+
 export default app;

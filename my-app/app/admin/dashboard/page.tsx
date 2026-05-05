@@ -16,9 +16,12 @@ interface KPI {
 interface RecentDeal {
   id: string;
   clientName: string;
+  propertyTitle?: string;
   stage: string;
+  status: string;
   amount: number;
   updatedAt: string;
+  terms?: { currency?: string; offerPrice?: number };
 }
 
 const STAGE_COLORS: Record<string, string> = {

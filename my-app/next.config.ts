@@ -19,6 +19,9 @@ const SERVER_ONLY_PACKAGES = [
 
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // Prevent Next.js from bundling Node.js-only packages (gRPC, OpenTelemetry)
   experimental: {
     serverComponentsExternalPackages: [

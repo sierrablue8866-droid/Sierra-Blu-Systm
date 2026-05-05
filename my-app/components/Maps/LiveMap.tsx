@@ -64,7 +64,7 @@ export default function LiveMap({ mode = 'dark' }: LiveMapProps) {
         className: 'sierra-popup-custom',
       });
 
-      marker.on('mouseover', function() {
+      marker.on('mouseover', function(this: any) {
         this.openPopup();
       });
     });
