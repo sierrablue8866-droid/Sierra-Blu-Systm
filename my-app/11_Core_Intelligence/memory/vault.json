@@ -1,0 +1,61 @@
+{
+  "knowledge_graph": {
+    "compounds": {
+      "laila": [
+        {
+          "fact": {
+            "unit": "UNIT-LC-001",
+            "type": "3BR Apartment",
+            "view": "Garden View",
+            "size": "185m",
+            "price": "12.5M EGP",
+            "status": "Available"
+          },
+          "weight": 1.0,
+          "timestamp": "2026-04-29T10:00:00Z"
+        },
+        {
+          "fact": {
+            "unit": "UNIT-LC-002",
+            "type": "4BR Penthouse",
+            "view": "Terrace",
+            "status": "Reserved"
+          },
+          "weight": 0.9,
+          "timestamp": "2026-04-29T11:30:00Z"
+        }
+      ],
+      "lake_view": [
+        {
+          "fact": {
+            "unit": "UNIT-LVR-010",
+            "type": "5BR Villa",
+            "location": "Prime Location",
+            "size": "210m Duplex",
+            "price": "15.2M EGP",
+            "status": "Available"
+          },
+          "weight": 1.0,
+          "timestamp": "2026-04-29T09:00:00Z"
+        }
+      ],
+      "new_cairo": [
+        {
+          "fact": {
+            "unit": "UNIT-NC-025",
+            "type": "2BR Loft",
+            "style": "Modern Design",
+            "status": "Sold"
+          },
+          "weight": 0.8,
+          "timestamp": "2026-04-29T12:00:00Z"
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "source": "WhatsApp Historical Logs (Laila Dataset)",
+    "last_sync": "2026-05-01T07:15:00Z",
+    "version": "1.4.0"
+  }
+}

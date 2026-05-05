@@ -1,0 +1,1 @@
+git init → git add . → git commit → push to GitHub → connect Vercel to GitHub
